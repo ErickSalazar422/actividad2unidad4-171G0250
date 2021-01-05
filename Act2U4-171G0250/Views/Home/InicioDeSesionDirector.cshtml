@@ -1,0 +1,32 @@
+﻿@model Act2U4_171G0250.Models.Director
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="text-center">
+    <h1 class="display-4">SISTEMA ACADEMICO</h1>
+    <p> DIRECTOR </p>
+    <form asp-controller="Home" asp-action="InicioDeSesionDirector">
+        <label>Usuario</label>
+        <input type="text" asp-for="Usuario" required id="Usuario" /> <br />
+        <br />
+        <label>Contraseña</label>
+        <input type="password" asp-for="Contraseña" required /> <br />
+        <br />
+        <input type="submit" value="Iniciar sesión" />
+        <br />
+        <a asp-controller="Home" asp-action="Index">
+            <label>Regresar</label>
+        </a>
+    </form>
+    <br />
+    
+    <p>
+        @Html.ValidationSummary()
+    </p>
+
+
+    </div>

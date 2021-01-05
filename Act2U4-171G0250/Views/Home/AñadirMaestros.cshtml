@@ -1,0 +1,20 @@
+﻿@model Act2U4_171G0250.Models.Maestro
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ Layout = "_Layout"; }
+
+<h3>Agregar Profesor</h3>
+<form method="post" asp-controller="Home" asp-action="AñadirMaestros">
+    <label>Nombre</label>
+    <input type="text" asp-for="Nombre" required /> <br />
+    <label>Usuario</label>
+    <input type="text" asp-for="Usuario" required /> <br />
+    <label>Contraseña</label>
+    <input type="password" asp-for="Contrasena" required /> <br />
+    <input type="submit" value="Agregar nuevo maestro" />
+    <p style=" margin:20px 0">
+        <a href="javascript:window.history.back()">Regresar</a>
+    </p>
+</form>
+<p>
+    @Html.ValidationSummary()
+</p>

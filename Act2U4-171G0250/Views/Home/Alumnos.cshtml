@@ -1,0 +1,46 @@
+﻿@model Act2U4_171G0250.Models.Maestro
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ Layout = "_Layout"; }
+
+<h1 class="display-4">SISTEMA ACADEMICO</h1>
+<h2>Alumnos de: @Model.Nombre</h2>
+<table>
+    <caption>
+        <a href="~/Home/AñadirAlumno/@Model.Id">Añada un alumno</a>
+    </caption>
+    <thead>
+        <tr>
+            <th>NControl:</th>
+            <th>Nombre:</th>
+            <th>Control:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var alumno in Model.Alumno)
+        {
+<tr>
+    <td>@alumno.Nombre</td>
+    <td>@alumno.Ncontrol</td>
+
+    <td>
+        <a href="~/Home/EditarDatosAlumno/@alumno.Id">Edite la información del alumno</a>
+        <a href="#" onclick="EliminarAlumno(@alumno.Id)">Elimine al alumno</a>
+    </td>
+</tr>
+}
+    </tbody>
+</table>
+
+<p style=" margin:20px 0">
+    <a href="javascript:window.history.back()">Regresar</a>
+</p>
+
+<form method="post" asp-controller="Home" asp-action="EliminarAlumno">
+    <input type="number" hidden="hidden" name="id" id="IdA" />
+</form>
+<script>
+    function EliminarAlumno(id) {
+        document.getElementById("IdA").value = id;
+        document.querySelector("form").submit();
+    }</script>

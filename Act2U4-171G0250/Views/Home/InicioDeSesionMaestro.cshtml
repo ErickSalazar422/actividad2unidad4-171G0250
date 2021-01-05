@@ -1,0 +1,27 @@
+﻿@model Act2U4_171G0250.Models.Maestro
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ Layout = "_Layout"; }
+
+<div class="text-center">
+    <h1 class="display-4">SISTEMA ACADEMICO</h1>
+    <p> MAESTRO </p>
+    <form asp-controller="Home" asp-action="InicioDeSesionMaestro">
+        <label>Usuario</label>
+        <input type="text" asp-for="Usuario" required id="Usuario" /> <br />
+        <br />
+        <label>Contraseña</label>
+        <input type="password" asp-for="Contrasena" required /> <br />
+        <br />
+        <input type="submit" value="Iniciar sesión" /> <br />
+        <a asp-controller="Home" asp-action="Index">
+            <label>Regresar</label>
+        </a>
+    </form>
+    <p>
+        @Html.ValidationSummary()
+    </p>
+
+
+</div>

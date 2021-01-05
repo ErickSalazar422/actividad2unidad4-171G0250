@@ -1,0 +1,20 @@
+﻿@model Act2U4_171G0250.Models.Maestro
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ Layout = "_Layout"; }
+
+<h1 class="display-4">SISTEMA ACADEMICO</h1>
+<h2>Cambiar contraseña </h2>
+<label>Profesor: </label>
+<input type="text" asp-for="Nombre" readonly="readonly" />
+<form method="post"  asp-controller="Home" asp-action="CambiarContraseñaM">
+    <input type="hidden" asp-for="Id" />
+    <label>Nueva contraseña</label>
+    <input type="password" asp-for="Contrasena" name="contraseña" required /> <br />
+    <label>Confirmar contraseña</label>
+    <input type="password" name="confcontraseña" required /> <br />
+    <input type="submit" value="Actualizar" />
+    <a href="~/Home/Maestros">Cancelar</a>
+</form>
+<p>
+    @Html.ValidationSummary()
+</p>

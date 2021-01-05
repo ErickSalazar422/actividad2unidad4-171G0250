@@ -1,0 +1,44 @@
+﻿@model Act2U4_171G0250.Models.Maestro
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ Layout = "_Layout"; }
+
+<div class="text-center">
+    <h1 class="display-4">SISTEMA ACADEMICO</h1>
+
+    @if (User.IsInRole("Director"))
+    {
+<form>
+    <h2>Apartado de director</h2>
+    <p>Director:<br />
+    @User.Claims.FirstOrDefault(x => x.Type == "Nombre").Value</p>
+
+    <a asp-controller="Home" asp-action="Maestros">
+        <input type="button" value="Maestros" />
+    </a>
+    <br />
+    <br />
+    <a href="~/Home/CierreDeSesion">
+        <input type="button" value="Cerrar sesión" />
+    </a>
+
+</form>
+    }
+
+    @if (User.IsInRole("Maestro"))
+    {<form>
+    <h3>Maestro: @User.Claims.FirstOrDefault(x => x.Type == "Nombre").Value</h3>
+
+    <a href="~/Home/Alumnos/@(int.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value))">
+        <input type="button" value="Alumnos" />
+    </a>
+    <br />
+    <br />
+    <a href="~/Home/CierreDeSesion">
+        <input type="button" value="Cerrar sesión" />
+    </a>
+
+</form>}
+
+</div>

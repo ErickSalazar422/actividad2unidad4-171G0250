@@ -1,0 +1,32 @@
+﻿@model Act2U4_171G0250.Models.ViewModels.AlumnoViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ Layout = "_Layout"; }
+
+<h1 class="display-4">SISTEMA ACADEMICO</h1>
+<h2>Editar Alumno</h2>
+<form method="post" asp-controller="Home" asp-action="EditarDatosAlumno">
+    <input type="hidden" asp-for="Alumno.Id" /> <br />
+    <label>Número de Control</label>
+    <input type="text" asp-for="Alumno.Ncontrol" readonly /> <br />
+    <label>Nombre</label>
+    <input type="text" asp-for="Alumno.Nombre" /> <br />
+    @if (User.IsInRole("Director"))
+    {
+<label>Grupo:</label>
+                <select asp-for="Alumno.IdMaestro" asp-items="@(new SelectList(Model.Maestros, "Id", "Nombre"))" id="grMaestro">
+                    <option selected="selected" value="">--Seleccione un Maestro--</option>
+                </select><br />}
+    @if (User.IsInRole("Profesor"))
+    {
+<label>Usuario del profesor del grupo </label>
+                <input type="text" readonly="readonly" asp-for="Maestro.Usuario" /> <br />
+                                <label>Nombre del maestro</label>
+                                                <input type="text" readonly="readonly" asp-for="Maestro.Nombre" />}
+    <input type="submit" value="Editar datos de alumno" /> <br />
+    <p style=" margin:20px 0">
+        <a href="javascript:window.history.back()">Regresar</a>
+    </p>
+</form>
+<p>
+    @Html.ValidationSummary()
+</p>

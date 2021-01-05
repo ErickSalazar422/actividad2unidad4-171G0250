@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Act2U4_171G0250.Models.Maestro>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ Layout = "_Layout"; }
+
+<h1 class="display-4">SISTEMA ACADEMICO</h1>
+<h2>Maestros</h2>
+<a asp-controller="Home" asp-action="AñadirMaestros">Añade un nuevo maestro</a>
+<table>
+    <thead>
+        <tr>
+            <th>Id:  </th>
+            <th>Nombre:  </th>
+            <th>Usuario:  </th>
+            <th>Activo:  </th>
+            <th>Control:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var maestro in Model)
+        {
+        <tr>
+            <td>@maestro.Id</td>
+            <td>@maestro.Nombre</td>
+            <td>@maestro.Usuario</td>
+            
+            <td  href="Id" onclick="cambiar(@maestro.Id)">@((maestro.Mact==1)?"Activo":"Inactivo")</td>
+            <td>
+                <a href="~/Home/Alumnos/@maestro.Id">Ver alumnos</a>
+            </td>
+            <td>
+                <a href="~/Home/CambiarContraseñaM/@maestro.Id">Cambie la contraseña del maestro</a>
+            </td>
+            <td>
+                <a href="~/Home/EditarDatosM/@maestro.Id">Edite los datos del maestro</a>
+            </td>
+        </tr>
+        
+}
+    </tbody>
+</table>
+
+<a href="~/Home/Aprobado">
+   <label>Regresar</label>
+</a>
+<form method="post" action="~/Home/DesactivarM">
+    <input type="number" id="Id" name="Id" hidden />
+</form>
+<script>
+    function cambiar(id) {
+        document.getElementById("Id").value = id;
+        document.querySelector("form").submit();
+    }</script>
